@@ -1,7 +1,5 @@
 #include <windows.h>
 
-#include <windows.h>
-
 /* Имя класса окна */
 #define WND_CLASS_NAME "My window class"
 
@@ -91,14 +89,21 @@ LRESULT CALLBACK MyWindowFunc( HWND hWnd, UINT Msg,
     return 0;
   case WM_TIMER:
     hDC = GetDC(hWnd);
-   
+    
     SelectObject(hDC, GetStockObject(DC_PEN));
     SetDCPenColor(hDC, RGB(0, 0, 0));
     
     Ellipse(hDC, 12, 12, w/2 - 24 , h - 12);
-    Ellipse(hDC, w/6, h/3, w/3 , h/3);
-    
     Ellipse(hDC, w/2 + 24, 12 , w - 12 , h - 12); 
+    
+    SelectObject(hDC, GetStockObject(DC_PEN));
+    SetDCPenColor(hDC, RGB(0, 0, 255));
+    SelectObject(hDC, GetStockObject(DC_BRUSH));
+    SetDCBrushColor(hDC, RGB(0, 0, 255));
+    
+    Ellipse(hDC, w/6, 2*h/3, w/3 , h/3);
+    Ellipse(hDC, 2*w/3, 2*h/3, 5*w/6 , h/3);
+    
     ReleaseDC(hWnd, hDC);
     return 0;
   case WM_DESTROY:
