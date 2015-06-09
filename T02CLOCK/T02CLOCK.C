@@ -168,7 +168,6 @@ LRESULT CALLBACK MyWindowFunc( HWND hWnd, UINT Msg,
     ReleaseDC(hWnd, hDC);
 
     SelectObject(hMemDCLogo, hBmLogo);
-    SetPixel(hMemDCLogo, 10, 10, RGB(255, 0, 0));
     return 0;
 
   case WM_SIZE:
@@ -248,10 +247,7 @@ LRESULT CALLBACK MyWindowFunc( HWND hWnd, UINT Msg,
 
     x = LOWORD(lParam);
     y = HIWORD(lParam);
-    SelectObject(hMemDC, GetStockObject(DC_PEN));
-    SetDCPenColor(hMemDC, RGB(255, 0, 0));
-    MoveToEx(hMemDC, w / 2, h / 2, NULL);
-    LineTo(hMemDC, x, y);
+    
     return 0;
 
   case WM_LBUTTONUP:
@@ -266,9 +262,7 @@ LRESULT CALLBACK MyWindowFunc( HWND hWnd, UINT Msg,
       Ellipse(hMemDC, x - 5, y - 5, x + 5, y + 5);
     }
     SelectObject(hMemDC, GetStockObject(DC_PEN));
-    SetDCPenColor(hMemDC, RGB(255, 0, 0));
-    MoveToEx(hMemDC, w / 2, h / 2, NULL);
-    LineTo(hMemDC, x, y);
+    
     return 0;
 
   case WM_ERASEBKGND:
